@@ -21,21 +21,41 @@ class _MyAppState extends State<MyApp> {
   final _questions = const [
     {
       'questionText': 'What\'s your favourite color?',
-      'answers': ['Black', 'Red', 'Green', 'White'],
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 8},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1},
+      ],
     },
     {
       'questionText': 'What\'s your favourite animal',
-      'answers': ['Tiger', 'Snake', 'Elephant', 'Chicken'],
+      'answers': [
+        {'text': 'Tiger', 'score': 7},
+        {'text': 'Snake', 'score': 10},
+        {'text': 'Elephant', 'score': 1},
+        {'text': 'Chicken', 'score': 3},
+      ],
     },
     {
       'questionText': 'What\'s your favourite daytime?',
-      'answers': ['Morning', 'Afternoon', 'Night', 'All'],
+      'answers': [
+        {'text': 'Morning', 'score': 1},
+        {'text': 'Noon', 'score': 4},
+        {'text': 'Afternoon', 'score': 7},
+        {'text': 'Night', 'score': 10},
+      ],
     },
   ];
 
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+
+    // _totalScore = _totalScore + score;
+    _totalScore += score; // this line is same with the upper line
+
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -60,7 +80,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }
